@@ -1,9 +1,21 @@
 # Задание 1
 # Необходимо вывести имена всех учеников из списка с новой строки
 
-names = ['Оля', 'Петя', 'Вася', 'Маша']
-for name in names:
-  print(name)
+names_1 = ['Оля', 'Петя', 'Вася', 'Маша']
+
+
+def first_0(list_name):
+  for name in list_name:
+    print(name)
+    
+print(f'# Задание 1')
+first_0(names_1)
+
+def first_1(list_name):
+  print(*list_name, sep='\n')
+
+print(f'# Задание 1.1')
+first_1(names_1)
 
 
 # Задание 2
@@ -12,9 +24,28 @@ for name in names:
 # Оля: 3
 # Петя: 4
 
-names = ['Оля', 'Петя', 'Вася', 'Маша']
-for name in names:
-  print(name,'из',len(name),'букаф')
+names_2 = ['Оля', 'Петя', 'Вася', 'Маша']
+
+
+def second_0(list_name):
+  for name in list_name:
+    print(name,'из',len(name),'букаф')
+
+print(f'# Задание 2')
+second_0(names_2)
+
+
+def second_1(list_name):
+  [print(f'{name}: {len(name)}') for name in list_name]
+
+print(f'# Задание 2_1')
+second_1(names_2)
+
+# def second_2(list_name):
+#   print(''.join({name}))
+
+# print(f'# Задание 2_1')
+# second_2(names_2)
 
 
 # Задание 3
@@ -73,5 +104,5 @@ group_num = 0
 item = 0
 for name in groups:
   group_num +=1
-  print('Группа', group_num, len(name),'ученика:', *name)
+  print('Группа:', group_num, ', '.join(name))
 print('Всего групп:', group_num)
