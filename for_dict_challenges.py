@@ -1,3 +1,4 @@
+from collections import Counter
 # Задание 1
 # Дан список учеников, нужно посчитать количество повторений каждого имени ученика
 # Пример вывода:
@@ -12,7 +13,15 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+
+# name_list = [i['first_name'] for i in students]
+# counter=Counter(name_list)
+# print(counter)
+# for k,v in counter.items():
+#   print(k,v)
+# -> conver в одну строчку
+for k,v in Counter([i['first_name'] for i in students]).items():
+    print(k,v)
 
 
 # Задание 2
@@ -27,7 +36,7 @@ students = [
     {'first_name': 'Оля'},
 ]
 # ???
-
+print(f'Имя: {Counter([name['first_name'] for name in students]).most_common()[0][0]}')
 
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
@@ -51,8 +60,10 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-# ???
+for i in enumerate(school_students,1):
+    print(f'Группа: {i[0]}: {Counter([name['first_name'] for name in i[1]]).most_common()[0][0]}')
 
+# print('\n'.join([f'Группа: {idx}: {Counter([name['first_name'] for name in students]).most_common()[0][0]}' for idx, students in enumerate(school_students, 1)]))
 
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
@@ -74,6 +85,15 @@ is_male = {
 }
 # ???
 
+for i in school:
+    m_counter = 0
+    w_counter = 0
+    for s in i['students']:
+        if is_male[s['first_name']]:
+            m_counter +=1
+        else:
+            w_counter +=1
+    print(f'Класс: {i['class']} мальчики:{m_counter}, девочки: {w_counter}')
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
@@ -92,4 +112,15 @@ is_male = {
     'Миша': True,
 }
 # ???
-
+for cl in school:
+    m_counter = 0
+    w_counter = 0
+    for s in cl['students']:
+        if s['first_name'] in is_male:
+            m_counter +=1
+        else:
+            w_counter +=1
+    if m_counter > w_counter:
+        print(f'В классе:{cl['class']} больше всего мальчиков, аж {m_counter}')
+    else:
+        print(f'В классе:{cl['class']} больше всего девочек, аж {w_counter}')
