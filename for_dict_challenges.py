@@ -12,7 +12,6 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
 
 
 # Задание 2
